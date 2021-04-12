@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+{# Ici "titre" est la clé renseignée dans le controller home #}
+{% block title %} {{titre}} {% endblock %}
+
+{% block body %}
+    <div>
+        <h1>Ma page d'accueil</h1> {# commentaire... #}
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam fugiat voluptates fuga sapiente veritatis quaerat quas dignissimos, explicabo exercitationem ea doloribus excepturi perferendis dolorem odit aliquam quisquam non illo error.</p>
+
+        {# affiche lundi (la première donnée du tableau) #}
+        <p>{{jours[0]}}</p>
+
+        {# for dans symphony qui parcourt le tableau créé dans le controller et affiche tous les jours #}
+        {% for j in jours %}
+        {{j}} <br>
+        {% endfor %}
+
+        {# OU dans des li#}
+        <ul>
+            {% for j in jours %}
+            <li>{{j}}</li>
+            {% endfor %}
+        </ul>
+
+        {# is even avec le if dans le for pour récupérer uniquement les éléments en indice paire dans le tableau (ici 0 et 2) #}
+        <ol>
+            {% for i, j in jours %}
+                {% if i is even %}
+                <li style="color:blue;">{{j}}</li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+
+        {# Pour afficher une image en dur #}
+        <img src="images/ef_plat.jpg" alt="" width="50px"/> <br/>
+
+        {# Pour afficher une image de la bdd #}
+        <img src="images/{{plat}}" alt="" width="50px"/> <br/>
+
+        {# Pour afficher une image du bon chemin directement trouvé par le système juste en précisant le nom du dossier duquel elle provient#}
+        <img src="{{ asset("images/"~ plat)}}" alt="" width="50px"/> <br/>
+
+
+
+
+
+
+
+    </div>
+
+{% endblock %}
